@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{5870C633-067E-4179-9B5E-EA8F5E8E2B76}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="pPentagon.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="pPentagonTest.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="pPentagon">
+        <MSBuild Projects="pPentagon.dproj"/>
+    </Target>
+    <Target Name="pPentagon:Clean">
+        <MSBuild Projects="pPentagon.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pPentagon:Make">
+        <MSBuild Projects="pPentagon.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pPentagonTest">
+        <MSBuild Projects="pPentagonTest.dproj"/>
+    </Target>
+    <Target Name="pPentagonTest:Clean">
+        <MSBuild Projects="pPentagonTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pPentagonTest:Make">
+        <MSBuild Projects="pPentagonTest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="pPentagon;pPentagonTest"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="pPentagon:Clean;pPentagonTest:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="pPentagon:Make;pPentagonTest:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
